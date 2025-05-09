@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Form with QR Code</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .payment-form {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    .payment-methods {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .payment-method {
+      flex-grow: 1;
+      margin: 0 5px;
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .payment-method:hover {
+      background-color: #45a049;
+    }
+
+    #qrcode-container {
+      margin-top: 20px;
+    }
+
+    #qrcode {
+      width: 200px;
+      height: 200px;
+    }
+
+    #paymentDoneButton {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    #paymentDoneButton:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="payment-form">
+  <h2>Payment Information</h2>
+  <form id="paymentForm">
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount" required>
+
+    <div class="payment-methods">
+      <button type="button" class="payment-method" onclick="generateQRCode('paypal')">PayPal</button>
+      <button type="button" class="payment-method" onclick="generateQRCode('Gpay')">Gpay</button>
+    </div>
+
+  </form>
+
+  <div id="qrcode-container">
+    <img id="qrcode" src="" alt="QR Code">
+  </div>
+
+  <button id="paymentDoneButton" style="display: none;" onclick="paymentDone()">Payment Done</button>
+</div>
+
+<script>
+  function generateQRCode(paymentMethod) {
+    const amountInput = document.getElementById('amount');
+    const amount = amountInput.value;
+
+    if (amount <= 0 || isNaN(amount)) {
+      alert('Please enter a valid amount.');
+      return;
+    }
+
+    // Replace the following with your actual payment processing logic
+    // For demonstration purposes, just alert the payment details
+    alert(`Processing payment of $${amount} via ${paymentMethod}`);
+
+    // Replace the src attribute with the URL of your QR code image based on the payment method
+    const qrCodeImage = document.getElementById('qrcode');
+    switch (paymentMethod) {
+      case 'paypal':
+        qrCodeImage.src = 'PayPal-QR-Code-Scan-Me-2.png';
+        break;
+      case 'Gpay':
+        qrCodeImage.src = 'pay.jpg';
+        break;
+      default:
+        break;
+    }
+
+    // Show the "Payment Done" button
+    document.getElementById('paymentDoneButton').style.display = 'block';
+  }
+
+  function paymentDone() {
+    alert('Payment has been successfully done!');
+    
+    // Additional functionality: reset the form and hide QR code and payment done button
+    resetForm();
+  }
+
+  function resetForm() {
+    // Reset form fields
+    document.getElementById('amount').value = '';
+
+    // Hide QR code and payment done button
+    document.getElementById('qrcode').src = '';
+    document.getElementById('qrcode-container').style.display = 'none';
+    document.getElementById('paymentDoneButton').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

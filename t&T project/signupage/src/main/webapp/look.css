@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* styles.css */
+
+/* Center the h2 heading */
+h2 {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #333; /* Example color */
+}
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table */
+}
+
+/* Style table header */
+th {
+    background-color: #f2f2f2; /* Example color */
+    color: #333; /* Example color */
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Style table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Example color */
+}
+
+/* Style table data cells */
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Add any additional styling as needed */
